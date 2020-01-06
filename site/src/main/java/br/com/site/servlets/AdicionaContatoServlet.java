@@ -3,6 +3,7 @@ package br.com.site.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,6 +44,8 @@ public class AdicionaContatoServlet extends javax.servlet.http.HttpServlet{
 	         out.println("</html>");
 		} catch (SQLException e) {
 			System.out.println("Erro ao adicionar contato!");
+			Logger loger = Logger.getLogger("logger");
+			loger.log("");
 		}
 		
 	}
