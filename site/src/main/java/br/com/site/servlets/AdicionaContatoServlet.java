@@ -2,12 +2,14 @@ package br.com.site.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.site.dao.ContatoDAO;
 import br.com.site.entidades.Contato;
 
 @WebServlet("/adicionaContato")
@@ -24,14 +26,24 @@ public class AdicionaContatoServlet extends javax.servlet.http.HttpServlet{
 		Contato contato = new Contato();
 		
 		contato.setNomeContato(request.getParameter("nome"));
+		contato.setEnderecoContato(request.getParameter("endereco"));
+		contato.setEmailContato(request.getParameter("email"));
+		
         PrintWriter out = response.getWriter();
 		
-		 out.println("<html>");
-         out.println("<body>");
-         out.println("Contato " + contato.getNomeContato() +
-                 "  adicionado com sucesso");        
-         out.println("</body>");
-         out.println("</html>");
+        ContatoDAO contatoDAO = new ContatoDAO();
+        
+        try {
+			contatoDAO.adicionarContatos(contato);
+			 out.println("<html>");
+	         out.println("<body>");
+	         out.println("Contato " + contato.getNomeContato() +
+	                 "  adicionado com sucesso");        
+	         out.println("</body>");
+	         out.println("</html>");
+		} catch (SQLException e) {
+			System.out.println("Erro ao adicionar contato!");
+		}
 		
 	}
 }
