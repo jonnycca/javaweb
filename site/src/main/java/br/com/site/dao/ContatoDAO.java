@@ -35,7 +35,7 @@ public class ContatoDAO {
 	
 	public void adicionarContatos(Contato contato) throws SQLException, IOException {
 		try(Connection conexao = FabricaConexoes.criarConexao()){
-			PreparedStatement comando = (PreparedStatement) conexao.prepareStatement("INSERT INTO contatos (nome, endereco, email) VALUES(?, ?, ?)");
+			PreparedStatement comando = (PreparedStatement) conexao.prepareStatement("INSERT INTO contatos (nomse, endereco, email) VALUES(?, ?, ?)");
 			comando.setString(1, contato.getNomeContato());
 			comando.setString(2, contato.getEnderecoContato());
 			comando.setString(3, contato.getEmailContato());

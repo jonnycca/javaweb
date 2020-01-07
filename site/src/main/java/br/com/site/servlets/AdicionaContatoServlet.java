@@ -3,12 +3,14 @@ package br.com.site.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import br.com.site.dao.ContatoDAO;
 import br.com.site.entidades.Contato;
@@ -21,6 +23,8 @@ public class AdicionaContatoServlet extends javax.servlet.http.HttpServlet{
 	 */
 	private static final long serialVersionUID = -6082369488265126233L;
 
+	static final Logger logger = LogManager.getLogger(AdicionaContatoServlet.class.getName()); 
+	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
@@ -43,9 +47,7 @@ public class AdicionaContatoServlet extends javax.servlet.http.HttpServlet{
 	         out.println("</body>");
 	         out.println("</html>");
 		} catch (SQLException e) {
-			System.out.println("Erro ao adicionar contato!");
-			Logger loger = Logger.getLogger("logger");
-			loger.log("");
+			logger.error("Erro ao adicionar contato ao banco de dados!");
 		}
 		
 	}
