@@ -2,30 +2,28 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%@ page import="java.util.*" %>
 <%@ page import="br.com.site.dao.*" %>
-<%@ page import="br.com.site.entidades.Contato" %>    
+<%@ page import="br.com.site.entidades.Contato" %>   
+ 
     
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
+	<jsp:useBean id="contatoDAO" class="br.com.site.dao.ContatoDAO"/>
+
+
 <title>Página de contatos</title>
 </head>
 <body>
 
-<table>
-	<% ContatoDAO contatoDAO = new ContatoDAO();
-		List<Contato> contatos = contatoDAO.selecionar();
+	<c:forEach var="contato" items="${contatoDAO.selecionar()}"><br/>
+		${contato.nomeContato }
 		
-		for(Contato contato : contatos){
-	%>		
-		<tr>
-			<td><%= contato.getNomeContato() %></td>
-		</tr>	
-	<%
-		}
-	%>
-</table>
+	</c:forEach>
+
 </body>
 </html>
