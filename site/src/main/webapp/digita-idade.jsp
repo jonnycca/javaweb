@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1"/>
+	<link href="webjars/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
+  
 <title>Digita idade</title>
 </head>
 <body>
@@ -13,9 +15,8 @@
 	<form action="mostra-idade.jsp">
 		Idade: <input type="text" name="idade"/>
 		
-		<input type="submit"/>
+		<input type="submit" class="btn btn-secondary"/>
 	
 	</form>
-
 </body>
 </html>
